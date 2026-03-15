@@ -18,7 +18,7 @@ interface KoreaMapProps {
 }
 
 const GEOJSON_URL =
-  'https://raw.githubusercontent.com/southkorea/southkorea-maps/master/kostat/2018/json/skorea_provinces_2018_geo.json'
+  'https://raw.githubusercontent.com/southkorea/southkorea-maps/master/kostat/2018/json/skorea-provinces-2018-geo.json'
 
 export default function KoreaMap({
   provinceArtifacts,

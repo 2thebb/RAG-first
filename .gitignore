@@ -1,0 +1,17 @@
+# 로컬 데이터 (용량 커서 제외)
+**/openscholar_rag/pdfs/
+**/openscholar_rag/index/
+**/openscholar_rag/results/
+**/openscholar_rag/papers_meta.json
+**/openscholar_rag/download_done.json
+
+# LFS 설정 제거 예정
+.gitattributes
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# 환경변수
+.env

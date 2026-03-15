@@ -34,12 +34,17 @@ export interface ListParams {
   indexWord?: string
 }
 
+const JSON_HEADERS = { Accept: 'application/json' }
+
 export async function fetchRelicList(params: ListParams) {
   const url = new URL(`${BASE_URL}/relic/list`)
   Object.entries(params).forEach(([k, v]) => {
     if (v !== undefined && v !== '') url.searchParams.set(k, String(v))
   })
-  const res = await fetch(url.toString(), { next: { revalidate: 300 } })
+  const res = await fetch(url.toString(), {
+    headers: JSON_HEADERS,
+    next: { revalidate: 300 },
+  })
   if (!res.ok) throw new Error(`API error: ${res.status}`)
   return res.json()
 }
@@ -48,7 +53,10 @@ export async function fetchRelicDetail(serviceKey: string, id: string) {
   const url = new URL(`${BASE_URL}/relic/detail`)
   url.searchParams.set('serviceKey', serviceKey)
   url.searchParams.set('id', id)
-  const res = await fetch(url.toString(), { next: { revalidate: 3600 } })
+  const res = await fetch(url.toString(), {
+    headers: JSON_HEADERS,
+    next: { revalidate: 3600 },
+  })
   if (!res.ok) throw new Error(`API error: ${res.status}`)
   return res.json()
 }
@@ -58,7 +66,10 @@ export async function fetchCodes(serviceKey: string, parentCode?: string) {
   url.searchParams.set('serviceKey', serviceKey)
   url.searchParams.set('numOfRows', '100')
   if (parentCode) url.searchParams.set('parentCode', parentCode)
-  const res = await fetch(url.toString(), { next: { revalidate: 86400 } })
+  const res = await fetch(url.toString(), {
+    headers: JSON_HEADERS,
+    next: { revalidate: 86400 },
+  })
   if (!res.ok) throw new Error(`API error: ${res.status}`)
   return res.json()
 }
